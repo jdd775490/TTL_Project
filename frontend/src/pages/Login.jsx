@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../auth/auth";
+import { login, isAdmin } from "../auth/auth"; 
 import "./login.css";
 import logo from "../assets/logo.png";
 
@@ -11,8 +11,15 @@ export default function Login() {
   const nav = useNavigate();
 
   const handleLogin = () => {
-    if (login(email, password)) nav("/dashboard");
-    else alert("Invalid credentials");
+    if (login(email, password)) {
+      if (isAdmin()) {
+        nav("/admin");   
+      } else {
+        nav("/home");   
+      }
+    } else {
+      alert("Invalid credentials");
+    }
   };
 
   return (

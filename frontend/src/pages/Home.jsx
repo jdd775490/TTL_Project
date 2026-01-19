@@ -1,6 +1,6 @@
 import { CardData } from "./CardData";
 import { NavBar } from "./NavBar";
-import { Footer } from "./footer";
+import { Footer } from "./Footer";
 
 function Home(){
 
@@ -8,10 +8,6 @@ function Home(){
         <div>
             
             <NavBar/>
-
-
-
-
           
             <div className="d-flex flex-wrap gap-3 pt-4">
             {CardData.map((item, i) => (

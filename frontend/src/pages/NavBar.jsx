@@ -1,4 +1,15 @@
+import {useNavigate} from "react-router-dom";
+import {logout} from "../auth/auth.js";
+
 function NavBar(){
+
+        const navigate = useNavigate()
+
+        const handleLogout = () => {
+            logout();
+            navigate("/login");  // redirect to login page
+        };
+
     return(
         <div className="container mt-5">
             <nav className="navbar navbar-expand-lg bg-primary fixed-top">    
@@ -12,7 +23,7 @@ function NavBar(){
                 <ul className="navbar-nav ms-auto">
                     <li className="nav-item">   
                     <a className="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
+                    </li>   
                     <li className="nav-item">
                     <a className="nav-link" href="#">Features</a>
                     </li>
@@ -23,7 +34,7 @@ function NavBar(){
                     <a className="nav-link disabled" aria-disabled="true">Disabled</a>
                     </li>
                     <li>
-                        <button className="btn btn-outline-dark" type="submit">LogOut</button>
+                        <button className="btn btn-outline-dark" type="submit" onClick={handleLogout}>LogOut</button>
                     </li>
                 </ul>
                 </div>
