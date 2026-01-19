@@ -1,22 +1,43 @@
+// App.jsx
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import ProtectedRoute from "./auth/ProtectedRoute";
+import { Home } from "./pages/Home";
+import Dashboard from "./pages/Dashboard";   // <-- use Dashboard as Admin panel
+import Unauthorized from "./pages/Unauthorized";
+import { ProtectedRoute, AdminRoute } from "./auth/ProtectedRoute";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        
         <Route path="/" element={<Navigate to="/login" />} />
+
+        
         <Route path="/login" element={<Login />} />
+
+        
         <Route
-          path="/dashboard"
+          path="/home"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <Home />
             </ProtectedRoute>
           }
         />
+
+        
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <Dashboard />   
+            </AdminRoute>
+          }
+        />
+
+       
+        <Route path="/unauthorized" element={<Unauthorized />} />
       </Routes>
     </BrowserRouter>
   );
