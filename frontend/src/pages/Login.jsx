@@ -10,8 +10,9 @@ export default function Login() {
   const [role, setRole] = useState("admin");
   const nav = useNavigate();
 
-  const handleLogin = () => {
-    if (login(email, password)) {
+  const handleLogin = async () => {
+    const success = await login(email, password);  
+    if (success) {
       if (isAdmin()) {
         nav("/admin");   
       } else {

@@ -1,18 +1,28 @@
 
-import { USER, ADMIN } from "./authData";
 
-export const login = (email, password) => {
-  if (email === USER.email && password === USER.password) {
-    localStorage.setItem("auth", "true");
-    localStorage.setItem("role", "user");
-    return true;
+export const login = async (email, password) => {
+  try {
+    const res = await fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+
+    if (!res.ok) return false;
+
+    const data = await res.json();
+
+    if (data.success) {
+      localStorage.setItem("auth", "true");
+      localStorage.setItem("role", data.role); 
+      return true;
+    }
+
+    return false;
+  } catch (err) {
+    console.error("Login error:", err);
+    return false;
   }
-  if (email === ADMIN.email && password === ADMIN.password) {
-    localStorage.setItem("auth", "true");
-    localStorage.setItem("role", "admin");
-    return true;
-  }
-  return false;
 };
 
 
