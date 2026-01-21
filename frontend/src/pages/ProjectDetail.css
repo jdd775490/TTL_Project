@@ -1,0 +1,134 @@
+.project-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e8f1f9 100%);
+  min-height: 100vh;
+}
+
+.back-button {
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #0044a8;
+}
+
+.project-header {
+  padding: 40px;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 15px rgba(0, 82, 204, 0.2);
+  background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
+}
+
+.project-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 36px;
+}
+
+.project-header .project-description {
+  margin: 10px 0 15px 0;
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #d32f2f;
+}
+
+/* ---------------- TAB DESIGN ---------------- */
+
+/* Tabs container */
+.project-tabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #d9e8f9;
+  padding-bottom: 8px;
+}
+
+/* Tab buttons */
+.tab-button {
+  background: none;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #0052cc;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Hover effect */
+.tab-button:hover {
+  background-color: #f0f4f8;
+  color: #0044a8;
+}
+
+/* Active tab styling */
+.tab-button.active {
+  background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 -2px 10px rgba(0, 82, 204, 0.15);
+}
+
+/* Tab content area */
+.tab-content {
+  background: #ffffff;
+  border: 2px solid #d9e8f9;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 82, 204, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Smooth fade animation when switching tabs */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-content h2, 
+.tab-content h3 {
+  color: #0052cc;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.tab-content p {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.6;
+}

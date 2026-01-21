@@ -1,23 +1,34 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login, isAdmin } from "../auth/auth"; 
+import { login, isAdmin, isUser } from "../auth/auth"; 
 import "./login.css";
 import logo from "../assets/logo.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("admin");
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
   const nav = useNavigate();
 
   const handleLogin = async () => {
     const success = await login(email, password);  
     if (success) {
-      if (isAdmin()) {
-        nav("/admin");   
-      } else {
-        nav("/home");   
-      }
+      let userRole = "Guest";
+      if (isAdmin()) userRole = "Admin";
+      else if (isUser()) userRole = "User";
+
+      
+      setTimeout(() => {
+        setShowPopup(false);
+        if (isAdmin()) {
+          nav("/admin");
+        } else if (isUser()) {
+          nav("/user");
+        } else {
+          nav("/"); // fallback
+        }
+      }, 2000);
     } else {
       alert("Invalid credentials");
     }
@@ -25,34 +36,21 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <img src={logo} className="login-logo" />
+      <img src={logo} className="login-logo" alt="Logo" />
 
       <div className="login-box">
         <h2>Login</h2>
 
-        <div className="role-toggle">
-          <button
-            className={role === "admin" ? "active" : ""}
-            onClick={() => setRole("admin")}
-          >
-            Admin
-          </button>
-          <button
-            className={role === "user" ? "active" : ""}
-            onClick={() => setRole("user")}
-          >
-            User
-          </button>
-        </div>
-
         <input
           placeholder="Email"
+          value={email}
           onChange={e => setEmail(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Password"
+          value={password}
           onChange={e => setPassword(e.target.value)}
         />
 
@@ -60,6 +58,7 @@ export default function Login() {
           Login
         </button>
       </div>
+
     </div>
   );
 }

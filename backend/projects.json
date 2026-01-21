@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Car 1 - Tata Nexon",
+      "description": "Compact SUV with modern design and powerful performance...",
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "name": "Car 2 - Tata Harrier",
+      "description": "Premium SUV offering comfort, space, and advanced technology",
+      "status": "Active"
+    },
+    {
+      "id": 3,
+      "name": "Tata Tiago",
+      "description": "The entry-level hatchback with petrol and CNG options.",
+      "status": "Active"
+    },
+    {
+      "id": 4,
+      "name": "Tata Nano",
+      "description": "MOST AFFORDABLE",
+      "status": "In Progress"
+    }
+  ]
+}

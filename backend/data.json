@@ -3,7 +3,7 @@
     { "role": "admin", "email": "raj@test.com", "password": "123456" },
     { "role": "admin", "email": "jayesh@test.com", "password": "123456" },
     {"role": "admin", "email": "gargii@test.com", "password":"123456"},
-
+    {"role": "user", "email": "t@test.com", "password":"123456"},
     { "role": "user", "email": "alice@example.com", "password": "password1" },
     { "role": "user", "email": "bob@example.com", "password": "password2" },
     { "role": "user", "email": "charlie@example.com", "password": "qwerty" },
