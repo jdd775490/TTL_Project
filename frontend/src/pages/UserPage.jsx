@@ -42,7 +42,7 @@ export default function UserPage() {
               <div
                 key={car.id}
                 className="car-card"
-                onClick={() => nav(`/project/${car.id}`)}
+                onClick={() => nav(`/project/${car.slug || car.id}`)}
               >
                 <div className="car-content">
                   <h2>{car.name}</h2>

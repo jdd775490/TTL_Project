@@ -13,18 +13,17 @@ export function NavBar(){
   return(
     <nav className="navbar">
       <div className="navbar-container">
-        <div className="navbar-brand">
-          <img 
-            src="https://www.purppledesigns.com/wp-content/uploads/2023/11/download-4.png" 
-            alt="Tata Motors" 
-            className="navbar-logo"
-          />
-          <span className="brand-name">Tata Motors</span>
-        </div>
-        
-        <div className="navbar-menu">
-          <a href="#" className="nav-link">Projects</a>
-          <a href="#" className="nav-link">Dashboard</a>
+        <div className="navbar-left">
+          <div className="navbar-brand">
+            <img 
+              src="https://www.purppledesigns.com/wp-content/uploads/2023/11/download-4.png" 
+              alt="Tata Motors" 
+              className="navbar-logo"
+            />
+            <span className="brand-name">Tata Motors</span>
+          </div>
+          
+
         </div>
 
         <button className="logout-btn" onClick={handleLogout}>

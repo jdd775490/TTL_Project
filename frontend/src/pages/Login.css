@@ -2,44 +2,48 @@
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
-  background: #239fec;
+  background: #1f3a93;
+  color: #333;
 }
 
 .login-container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  position: relative;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #1f3a93;
 }
 
 .login-logo {
   position: absolute;
-  top: 25px;
-  left: 30px;
-  height: 45px;
+  top: 22px;
+  left: 28px;
+  height: 44px;
   border-radius: 4px;
 }
 
-
 .login-box {
-  width: 360px;
-  background: #1d70e4;
-  padding: 35px;
-  border-radius: 20px;
+  width: 420px;
+  max-width: 100%;
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(31, 58, 147, 0.12);
+  border: 1px solid rgba(255,255,255,0.06);
 }
-
 
 .login-box h2 {
-  text-align: center;
-  color: white;
-  margin-bottom: 20px;
+  text-align: left;
+  color: #1f3a93;
+  margin: 0 0 18px 0;
+  font-size: 28px;
+  font-weight: 700;
 }
-
 
 .role-toggle {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .role-toggle button {
@@ -47,39 +51,71 @@ body {
   padding: 10px;
   border: none;
   background: transparent;
-  color: white;
+  color: #666;
   cursor: pointer;
   border-bottom: 2px solid transparent;
+  font-weight: 600;
 }
 
 .role-toggle .active {
-  border-bottom: 3px solid #05cb30;
-  font-weight: bold;
+  border-bottom: 3px solid #1f3a93;
+  color: #1f3a93;
 }
-
 
 .login-box input {
   width: 100%;
   padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  border: none;
+  margin-bottom: 14px;
+  border-radius: 6px;
+  border: 1px solid #e8e8e8;
   outline: none;
+  font-size: 14px;
+  background: #fff;
 }
 
+.login-box input:focus {
+  border-color: #1f3a93;
+  box-shadow: 0 6px 18px rgba(31, 58, 147, 0.06);
+}
 
 .login-btn {
   width: 100%;
   padding: 12px;
-  background: transparent;
-  border: 2px solid #05cb30;
-  color: #05cb30;
+  background: #ff6b35;
+  border: none;
+  color: white;
   font-size: 15px;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: 700;
+  transition: background-color 0.2s ease, transform 0.08s ease;
 }
 
 .login-btn:hover {
-  background: #05cb30;
-  color: black;
+  background: #1f3a93;
+  transform: translateY(-1px);
+}
+
+.login-secondary {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: transparent;
+  border: 2px solid #1f3a93;
+  color: #1f3a93;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .login-box {
+    padding: 24px;
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .login-box h2 {
+    font-size: 22px;
+  }
 }

@@ -6,7 +6,7 @@ import "./AdminPage.css";
 import { isAdmin, isUser } from "../auth/auth";
 
 export default function AdminPage() {
-  const [cars, setCars] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
@@ -21,17 +21,17 @@ export default function AdminPage() {
   const role = isAdmin() ? "admin" : isUser() ? "user" : "guest";
 
   useEffect(() => {
-    fetchCars();
+    fetchProjects();
   }, []);
 
-  const fetchCars = async () => {
+  const fetchProjects = async () => {
     try {
       const res = await fetch("http://localhost:5000/api/projects");
       const data = await res.json();
-      setCars(data);
+      setProjects(data);
       setLoading(false);
     } catch (err) {
-      console.error("Error fetching cars:", err);
+      console.error("Error fetching projects:", err);
       setLoading(false);
     }
   };
@@ -74,9 +74,9 @@ export default function AdminPage() {
           body: JSON.stringify(formData)
         });
         if (res.ok) {
-          alert("Car updated successfully!");
+          alert("Project updated successfully!");
           setShowForm(false);
-          fetchCars();
+          fetchProjects();
         }
       } else {
         const res = await fetch("http://localhost:5000/api/projects", {
@@ -85,37 +85,37 @@ export default function AdminPage() {
           body: JSON.stringify(formData)
         });
         if (res.ok) {
-          alert("Car added successfully!");
+          alert("Project added successfully!");
           setShowForm(false);
-          fetchCars();
+          fetchProjects();
         }
       }
     } catch (err) {
-      console.error("Error saving car:", err);
-      alert("Error saving car");
+      console.error("Error saving project:", err);
+      alert("Error saving project");
     }
   };
 
   const handleDeleteProject = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this car?")) return;
+    if (!window.confirm("Are you sure you want to delete this project?")) return;
     
     try {
       const res = await fetch(`http://localhost:5000/api/projects/${id}`, {
         method: "DELETE"
       });
       if (res.ok) {
-        alert("Car deleted successfully!");
-        fetchCars();
+        alert("Project deleted successfully!");
+        fetchProjects();
       }
     } catch (err) {
-      console.error("Error deleting car:", err);
-      alert("Error deleting car");
+      console.error("Error deleting project:", err);
+      alert("Error deleting project");
     }
   };
 
   // Role-based filtering
-  const visibleCars =
-    role === "admin" ? cars : role === "user" ? cars.slice(0, 3) : cars.slice(0, 1);
+  const visibleProjects =
+    role === "admin" ? projects : role === "user" ? projects.slice(0, 3) : projects.slice(0, 1);
 
   return (
     <div className="app-wrapper">
@@ -123,11 +123,11 @@ export default function AdminPage() {
       <div className="admin-page-container">
         <div className="admin-header">
           <div>
-            <h1>Tata Cars</h1>
+            <h1>Projects</h1>
           </div>
           {role === "admin" && (
             <button className="add-project-btn" onClick={handleAddProject}>
-              + Add Car
+              + Add Project
             </button>
           )}
         </div>
@@ -135,19 +135,19 @@ export default function AdminPage() {
         {showForm && role === "admin" && (
           <div className="form-modal">
             <div className="form-content">
-              <h2>{editingId ? "Edit Car" : "Add New Car"}</h2>
+              <h2>{editingId ? "Edit Project" : "Add New Project"}</h2>
               
               <input
                 type="text"
                 name="name"
-                placeholder="Car Name"
+                placeholder="Project Name"
                 value={formData.name}
                 onChange={handleFormChange}
               />
               
               <textarea
                 name="description"
-                placeholder="Car Description"
+                placeholder="Project Description"
                 value={formData.description}
                 onChange={handleFormChange}
                 rows="4"
@@ -165,7 +165,7 @@ export default function AdminPage() {
 
               <div className="form-buttons">
                 <button className="save-btn" onClick={handleSubmit}>
-                  {editingId ? "Update" : "Add"} Car
+                  {editingId ? "Update" : "Add"} Project
                 </button>
                 <button className="cancel-btn" onClick={() => setShowForm(false)}>
                   Cancel
@@ -176,20 +176,20 @@ export default function AdminPage() {
         )}
 
         {loading ? (
-          <div className="loading">Loading cars...</div>
+          <div className="loading">Loading projects...</div>
         ) : (
           <div className="projects-table-container">
             <table className="projects-table">
               <thead>
                 <tr>
-                  <th>Car Name</th>
+                  <th>Project Name</th>
                   <th>Description</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {visibleCars.map(project => (
+                {visibleProjects.map(project => (
                   <tr key={project.id}>
                     <td className="project-name">{project.name}</td>
                     <td className="project-desc">{project.description}</td>
@@ -201,7 +201,7 @@ export default function AdminPage() {
                     <td className="actions">
                       <button
                         className="view-btn"
-                        onClick={() => nav(`/project/${project.id}`)}
+                        onClick={() => nav(`/project/${project.slug || project.id}`)}
                       >
                         View
                       </button>

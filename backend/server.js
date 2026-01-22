@@ -50,6 +50,18 @@ app.get("/api/projects", (req, res) => {
   res.json(projects);
 });
 
+// Slug-based route MUST come before :id route to match correctly
+app.get("/api/projects/slug/:slug", (req, res) => {
+  const projects = loadProjects();
+  const project = projects.find(p => p.slug === req.params.slug);
+  if (project) {
+    res.json(project);
+  } else {
+    res.status(404).json({ message: "Project not found" });
+  }
+});
+
+// Generic ID-based route comes after slug route
 app.get("/api/projects/:id", (req, res) => {
   const projects = loadProjects();
   const project = projects.find(p => p.id === parseInt(req.params.id));
